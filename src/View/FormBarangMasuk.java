@@ -33,6 +33,7 @@ public class FormBarangMasuk extends javax.swing.JFrame {
     private String idTransaksiBarang;
     private String idBarang;
     private String kategori;
+    private String satuan;
     private Date tanggal;
     private String idSupplier;
     private int jumlah;
@@ -144,8 +145,8 @@ public class FormBarangMasuk extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         cbNamaBarang = new javax.swing.JComboBox();
         cbNamaSupplier = new javax.swing.JComboBox();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         txtKategori = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Form Data Barang");
@@ -293,8 +294,6 @@ public class FormBarangMasuk extends javax.swing.JFrame {
             }
         });
 
-        jDateChooser1.setDateFormatString("YYYY-MM-dd");
-
         txtKategori.setEditable(false);
         txtKategori.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtKategori.addActionListener(new java.awt.event.ActionListener() {
@@ -326,8 +325,8 @@ public class FormBarangMasuk extends javax.swing.JFrame {
                         .addComponent(btnCancel))
                     .addComponent(cbNamaBarang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbNamaSupplier, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtKategori))
+                    .addComponent(txtKategori)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -355,7 +354,7 @@ public class FormBarangMasuk extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -390,6 +389,7 @@ public class FormBarangMasuk extends javax.swing.JFrame {
         idTransaksiBarang = txtIdBarang.getText().trim();
         idBarang = brg.getIdbarang();
         kategori = txtKategori.getText().trim();
+        satuan = brg.getSatuan();
         tanggal = Date.valueOf(spf.format(jDateChooser1.getDate()));
         idSupplier = brg.getIdsupplier();
         jumlah = Integer.parseInt(txtStok.getText().trim());
@@ -412,7 +412,7 @@ public class FormBarangMasuk extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Field Tidak Boleh Kosong !!");
             txtStok.requestFocus();
         } else {
-            brg.Save(idTransaksiBarang, idBarang, kategori, tanggal, idSupplier, jumlah);
+            brg.Save(idTransaksiBarang, idBarang, kategori, satuan, tanggal, idSupplier, jumlah);
             brg.UpdateStok(idBarang, totalStok);
             Refresh();
         }
@@ -470,6 +470,7 @@ public class FormBarangMasuk extends javax.swing.JFrame {
                 brg.setIdbarang(res.getString("idbarang"));
                 txtKategori.setText(res.getString("kategori"));
                 brg.setJumlah(res.getInt("stok"));
+                brg.setSatuan(res.getString("satuan"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Data Barang Gagal di Tampilkan !!");

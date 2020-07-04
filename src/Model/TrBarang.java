@@ -21,6 +21,7 @@ public class TrBarang {
     public String idtransaksibarang;
     public String idbarang;
     public String kategori;
+    public String satuan;
     public Date tanggal;
     public String idsupplier;
     public int jumlah;
@@ -53,6 +54,14 @@ public class TrBarang {
         this.kategori = kategori;
     }
 
+    public String getSatuan() {
+        return satuan;
+    }
+
+    public void setSatuan(String satuan) {
+        this.satuan = satuan;
+    }
+    
     public Date getTanggal() {
         return tanggal;
     }
@@ -77,12 +86,12 @@ public class TrBarang {
         this.jumlah = jumlah;
     }
     
-    public void Save(String idtransaksibarang, String idbarang, String kategori, Date tanggal, String idsupplier, int jumlah) {
+    public void Save(String idtransaksibarang, String idbarang, String kategori, String satuan, Date tanggal, String idsupplier, int jumlah) {
         con = new Koneksi();
         con.connect();
         try {
             st = con.conn.createStatement();
-            query = "insert into tr_barang(idtransaksibarang, idbarang, kategori, tanggal, idsupplier, jumlah)values('" + idtransaksibarang + "','" + idbarang + "','" + kategori + "','" + tanggal + "','" + idsupplier + "','" + jumlah +"')";
+            query = "insert into tr_barang(idtransaksibarang, idbarang, kategori,satuan, tanggal, idsupplier, jumlah)values('" + idtransaksibarang + "','" + idbarang + "','" + kategori + "','" + satuan + "','" + tanggal + "','" + idsupplier + "','" + jumlah +"')";
             st.executeUpdate(query);
             st.close();
             con.conn.close();
