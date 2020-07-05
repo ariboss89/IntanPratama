@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.5.8)
-# Date: 2020-04-03 21:18:40
+# Date: 2020-07-05 10:00:17
 # Generator: MySQL-Front 5.3  (Build 4.81)
 
 /*!40101 SET NAMES utf8 */;
@@ -48,6 +48,7 @@ CREATE TABLE `tb_barang` (
   `idbarang` varchar(11) NOT NULL DEFAULT '',
   `nama` varchar(255) DEFAULT NULL,
   `kategori` varchar(50) DEFAULT NULL,
+  `satuan` varchar(255) DEFAULT NULL,
   `hargabeli` int(11) DEFAULT NULL,
   `hargajual` int(11) DEFAULT NULL,
   `stok` int(11) DEFAULT NULL,
@@ -61,7 +62,7 @@ CREATE TABLE `tb_barang` (
 # Data for table "tb_barang"
 #
 
-INSERT INTO `tb_barang` VALUES ('B0001','Keramik Manise','Keramik',10000,20000,0,8),('B0002','Keramik Batu','Keramik',20000,30000,110,10),('B0003','Keramik Buah-Buahan','Keramik',20000,25000,30,20),('B0004','Topless','Pot',10000,12000,145,10);
+INSERT INTO `tb_barang` VALUES ('B0001','Keramik Manise','Keramik',NULL,10000,20000,0,8),('B0002','Keramik Batu','Keramik',NULL,20000,30000,110,10),('B0003','Keramik Buah-Buahan','Keramik',NULL,20000,25000,30,20),('B0004','Topless','Pot',NULL,10000,12000,165,10),('B0005','Semen Tiga Roda','Manise','SAK',60000,70000,200,5);
 
 #
 # Structure for table "dt_masuk"
@@ -131,6 +132,7 @@ CREATE TABLE `tr_barang` (
   `idtransaksibarang` varchar(11) NOT NULL DEFAULT '',
   `idbarang` varchar(11) DEFAULT NULL,
   `kategori` varchar(50) DEFAULT NULL,
+  `satuan` varchar(255) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   `idsupplier` varchar(11) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
@@ -147,7 +149,7 @@ CREATE TABLE `tr_barang` (
 # Data for table "tr_barang"
 #
 
-INSERT INTO `tr_barang` VALUES ('TRB0001','B0003','Keramik','2019-12-29','S0001',10),('TRB0002','B0004','Pot','2019-12-29','S0002',100),('TRB0003','B0004','Pot','2019-12-29','S0002',45);
+INSERT INTO `tr_barang` VALUES ('TRB0001','B0003','Keramik',NULL,'2019-12-29','S0001',10),('TRB0002','B0004','Pot',NULL,'2019-12-29','S0002',100),('TRB0003','B0004','Pot',NULL,'2019-12-29','S0002',45),('TRB0004','B0004','Pot',NULL,'2019-12-29','S0002',10),('TRB0005','B0004','Pot',NULL,'2020-04-03','S0002',10),('TRB0006','B0005','Manise','SAK','2020-07-04','S0002',200);
 
 #
 # Structure for table "tr_keluar"
